@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<style>
+#timer-box {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  margin-top: 20%;
+  border: 5px solid blue;
+  padding: 5px;
+}
+#time-part1 {
+  margin-bottom: 5px;
+}
+</style>
+</head>
+<body>
+
+<div id="timer-box">
+  <p id="time-part1"></p>
+  <p id="time-part2"></p>
+</div>
+
+<script>
+// 목표 시간 설정
+var countDownDate = new Date("Jul 25, 2023 14:00:00").getTime();
+
+// 1초마다 타이머 업데이트
+var countdownFunction = setInterval(function() {
+
+  // 현재 시간 가져오기
+  var now = new Date().getTime();
+    
+  // 목표 시간까지 남은 시간 계산
+  var distance = countDownDate - now;
+    
+  // 날짜, 시간, 분, 초 계산
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // 결과 출력
+  document.getElementById("time-part1").innerHTML = days + "일 " + hours + "시간 ";
+  document.getElementById("time-part2").innerHTML = minutes + "분 " + seconds + "초 ";
+    
+  // 타이머가 끝나면 텍스트 출력
+  if (distance < 0) {
+    clearInterval(countdownFunction);
+    document.getElementById("time-part1").innerHTML = "시간이";
+    document.getElementById("time-part2").innerHTML = "종료되었습니다.";
+  }
+}, 1000);
+</script>
+
+</body>
+</html> 
